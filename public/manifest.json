@@ -1,0 +1,22 @@
+{
+    "name": "Shoot Shaped Game",
+    "short_name": "Shoot Game",
+    "icons":[
+        {"src": "assets/img/characters/char_2_192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any maskable"},
+        {"src": "assets/img/characters/char_2_256.png",
+          "sizes": "256x256",
+          "type": "image/png",
+          "purpose": "any maskable"},
+        {"src": "assets/img/characters/char_2_512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any maskable"}
+    ],
+    "start_url":"/index.html",
+    "display":"standalone",
+    "background_color": "#ECE0F8",
+    "theme_ color": "#fafafa"
+}
