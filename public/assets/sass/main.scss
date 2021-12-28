@@ -1,0 +1,437 @@
+@import "lib/vars";
+@import "lib/reboot";
+@import "lib/keyframes";
+@import "lib/fontface";
+@import "lib/colors";
+@import "lib/typo";
+@import "lib/utils";
+
+
+html,
+body {
+    background-color: #eee;
+}
+
+/*
+ * Estilos para el layout general
+ *
+ * Si quieres aprender más sobre SCSS: 
+ * https://www.youtube.com/playlist?list=PLn4HfBF-ETRsrE-AUpp2c4LpoNsK15X0d
+ * y en 45 minutos eres experto/a en SCSS
+ *
+ */
+// La maquetación más general te la damos hecha para que no sea un ejercicio muy largo
+// Recuerda que puedes cambiar lo que quieras.
+// hemos puesto algunas pistas en el código que te pueden ayudar...
+// Mucha suerte!!
+
+.layout {
+    height: 100vh;
+    width: 100vw;
+    max-width: 500px;
+    overflow: auto;
+    background-color: #fff;
+    box-shadow: 0 0 86px rgba(0, 0, 0, .15);
+
+    &.home {
+        display: grid;
+        grid-template-rows: auto 1fr auto auto;
+        grid-template-columns: 100%;
+
+        header {
+            grid-area: 1 / 1 / span 1 / -1;
+        }
+
+        main {
+            grid-area: 2 / 1 / span 1 / -1;
+        }
+
+        .main_navigation {
+            grid-area: 3 / 1 / span 1 / -1;
+        }
+
+        .secondary_navigation {
+            grid-area: 4 / 1 / span 1 / -1;
+        }
+    }
+
+    &.single_page {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 100%;
+
+        header {
+            grid-area: 1 / 1 / span 1 / -1;
+        }
+
+        main {
+            grid-area: 2 / 1 / span 1 / -1;
+        }
+
+        footer {
+            grid-area: 3 / 1 / span 1 / -1;
+        }
+    }
+
+    &.game {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 100%;
+
+        .ui {
+            grid-area: 1 / 1 / span 1 / -1;
+        }
+
+        .game_container {
+            grid-area: 2 / 1 / span 1 / -1;
+        }
+
+        .modal_window {
+            grid-area: 1 / 1 / -1 / -1;
+        }
+    }
+
+
+    @media screen and (min-width: 500px) {
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 2rem auto;
+        height: calc(100vh - 4rem);
+    }
+}
+
+
+/*
+ *
+ * Estilos para la página home
+ *
+ */
+.home {
+    
+    header {
+        //Cambio ok
+        margin-top: 1rem;
+        h1 {
+            text-align: center;
+            color: black; 
+        }
+
+        h2 {
+            text-align: center;
+            color:dimgrey;
+        }
+    }
+
+    main {
+        background-color: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .slider {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    //Cambio no todo ok
+    .main_navigation {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+    //El icono no se centra bien
+    .secondary_navigation {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/*
+ *
+ * Estilos para la página highscores
+ *
+ */
+.single_page {
+
+    header {
+        margin-top: 1rem;
+        h2 {
+            display: flex;
+            justify-content: center;
+
+            .icon {
+                color: gray;
+            }
+
+            .label {
+                color: black;
+            }
+        }
+    }
+
+    main {
+        margin-left: 1rem;
+        section {
+            h3 {
+                color:black;
+                margin-bottom: 0.5rem;
+            }
+
+            .big_scores {
+                position: relative; // swiper lo va a necesitar... ;)
+
+                .big_score {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    text-align: center;
+                    color:rgb(192, 60, 126); 
+                    line-height: 2rem;
+                    padding: 2rem;
+                }
+            }
+
+            .swiper-pagination-bullet-active {
+                // swiper lo va a necesitar... ;)
+                background-color: rgb(192, 60, 126);
+            }
+
+            .leaderboard_items {
+                
+                .leaderboard_item {
+                    opacity: 0; // animejs lo va a necesitar
+                    color: dimgray;
+                    display: flex;
+
+                    .number {
+                        font-weight: bold;
+                    }
+
+                    .date {
+                        margin-left: 1rem;
+                    }
+
+                    .score {
+                        margin-left: auto;
+                        margin-right: 1rem;
+                    }
+
+                    &:first-child {
+                        font-weight: bold;
+                        color:rgb(201, 80, 164); 
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+}
+
+
+/*
+ * Botones
+ */
+.btn {
+    padding: 0.5rem 1rem 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight:bolder;
+
+    &:hover,
+    &:visited,
+    &:link {
+        color: inherit;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 0 0 3px rgba(151, 151, 151, 0.3);
+    }
+
+    &.btn_primary {
+        border: 1px solid rgb(192, 60, 126);
+        background:rgb(192, 60, 126);
+        color: white;
+       
+        &:hover,
+        &:focus {
+            border: 1px solid rgb(228, 63, 145);
+            background:rgb(228, 63, 145);
+        }
+    }
+
+    &.btn_link {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #F2F2F2;
+        border: 1px solid #F2F2F2;
+        color: #525252;
+    }
+}
+
+.secondary_navigation_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:hover,
+    &:visited,
+    &:link {
+        color: inherit;
+    }
+
+    .icon {
+        display: flex;
+        justify-content: center; 
+        background-color: #c9c9c9;
+        border-radius:50px;
+        width: 25px;
+    }
+        
+    .label {
+    }
+}
+
+.game {
+    .ui {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        .lifes,
+        .score {
+            .amount {
+                font-weight: 600;
+            }
+
+            .icon {
+                font-size: 1.25rem;
+                .mdi-cards-heart{color:rgb(192, 60, 126);}
+                .mdi-star{color:rgb(230, 199, 28);}
+            }
+        }
+
+        .pause {
+            font-size: 1.5rem;
+        }
+    }
+
+    .game_container {
+        padding: 1rem;
+        .game_holder { // te va a ayudar a que funcione el juego ok...
+            position: relative; 
+            height: 100%;
+        }
+    }
+
+    .modal_window {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, .6);
+        }
+
+        .holder {
+            position: relative;
+            width: 90%;
+            z-index: 3;
+            background-color: #fff;
+            padding: 1rem;
+
+            .message {
+                font-weight: bold;
+                font-size: 1.25em;  
+            }
+
+            .cta {
+                margin-top: 1rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 1rem;
+
+                .btn {
+                    justify-content: center;
+                }
+            }
+        }
+
+        &.opened {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.slider { // una ayuda! :)
+    svg {
+        overflow: visible;
+
+        g.char_01 {
+            transform-origin: 20% 50%;
+        }
+
+        g.char_02 {
+            transform-origin: 50% 50%;
+        }
+
+        g.char_03 {
+            transform-origin: 80% 50%;
+        }
+
+        g.char {
+            transition: all 2350ms ease;
+
+            &:hover {
+                // animation: etc...
+                animation: move 500ms ease;
+            }
+        }
+    }
+}
+
+@keyframes move {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    45% {
+        transform: rotate(-20deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
